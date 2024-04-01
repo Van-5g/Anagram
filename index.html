@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anagram Checker</title>
+</head>
+<body>
+<div class="container">
+  <h2>Anagram Checker</h2>
+  <div class="input-container">
+    <input type="text" id="word1" placeholder="Enter first word or phrase">
+    <input type="text" id="word2" placeholder="Enter second word or phrase">
+    <button onclick="checkAnagram()">Check</button>
+  </div>
+  <div id="result"></div>
+</div>
+<script>
+    function checkAnagram() {
+  const word1 = document.getElementById("word1").value.trim();
+  const word2 = document.getElementById("word2").value.trim();
+
+  if (word1 === "" || word2 === "") {
+    alert("Please enter both words/phrases.");
+    return;
+  }
+
+  const result = anagram(word1, word2);
+
+  if (result) {
+    alert(`"${word1}" and "${word2}" are anagrams!`);
+  } else {
+    alert(`"${word1}" and "${word2}" are not anagrams.`);
+  }
+}
+
+function anagram(input1, input2) {
+  const str1 = input1.replace(/\s/g, "").toLowerCase();
+  const str2 = input2.replace(/\s/g, "").toLowerCase();
+
+  if (str1.length !== str2.length) {
+    return false;
+  }
+
+  const sortedStr1 = str1.split("").sort().join("");
+  const sortedStr2 = str2.split("").sort().join("");
+
+  return sortedStr1 === sortedStr2;
+}
+
+
+</script>
+</body>
+</html>
+
